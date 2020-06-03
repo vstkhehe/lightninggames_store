@@ -55,19 +55,22 @@ public class JogoController {
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ModelAndView detalhesJogo(@PathVariable("id") String id) {
 		ModelAndView mv = new ModelAndView("jogo/detalhesJogo");
-		Optional<Jogo> jogo = jogoRepository.findById(id);
-		mv.addObject("jogo", jogo.get());
-		
-		Iterable<Edicao> edicoes = edicaoRepository.findByJogo(jogo.get());
-		mv.addObject("edicoes", edicoes);	
+		Optional<Jogo> optionalJogo = jogoRepository.findById(id);
+		if(optionalJogo.isPresent()) {
+			mv.addObject("jogo", optionalJogo.get());
+			Iterable<Edicao> edicoes = edicaoRepository.findByJogo(optionalJogo.get());
+			mv.addObject("edicoes", edicoes);
+		}				
 		return mv;
 	}
 	
 	@RequestMapping("/deletarJogo")
 	public String deletarJogo(String id) {
 		Optional<Jogo> optionalJogo = jogoRepository.findById(id);
-		Jogo jogo = optionalJogo.get();
-		jogoRepository.delete(jogo);
+		if(optionalJogo.isPresent()) {
+			Jogo jogo = optionalJogo.get();
+			jogoRepository.delete(jogo);
+		}
 		return "redirect:/jogos";
 	}
 	
@@ -78,18 +81,23 @@ public class JogoController {
 			return "redirect:/{id}";
 		}
 			Optional<Jogo> optionalJogo = jogoRepository.findById(id);
-			Jogo jogo = optionalJogo.get();
-			edicao.setJogo(jogo);
-			edicaoRepository.save(edicao);
-			attributes.addFlashAttribute("mensagem", "Edição adicionado com sucesso");
+			if(optionalJogo.isPresent()) {
+				Jogo jogo = optionalJogo.get();
+				edicao.setJogo(jogo);
+				edicaoRepository.save(edicao);
+				attributes.addFlashAttribute("mensagem", "Edição adicionado com sucesso");
+			}
 		return "redirect:/{id}";
 	}
 	
 	@RequestMapping("/deletarEdicao")
-	public String deletarEdicao(String nome) {
-		Edicao edicao = edicaoRepository.findByNome(nome);
-		edicaoRepository.delete(edicao);
-		return "redirect:/{id}";
+	public String deletarEdicao(String id) {
+		Optional<Edicao> optionalEdicao = edicaoRepository.findById(id);
+		if(optionalEdicao.isPresent()) {
+			Edicao edicao = optionalEdicao.get();
+			edicaoRepository.delete(edicao);
+		}
+		return "redirect:/{jogo.id}";
 		
 	}
 	
