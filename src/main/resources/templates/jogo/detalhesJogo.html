@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+	<head>
+		<title> Lightning Games</title>
+		
+	      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+	      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+	
+	      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		
+		  <link rel="stylesheet" href="style/styleCss.css"/>
+	</head>
+		
+		<body>
+		
+			<header>
+			<nav>
+		    <div class="nav-wrapper">
+		      <a href="#!" class="brand-logo center">Lightning Games</a>
+		      	<ul class="left hide-on-med-and-down">
+		      		<li class="active"><a href="/">Home</a></li>
+			        <li class="active"><a href="/cadastrarJogo" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Jogo</a></li>
+			        <li class="active"><a href="/jogos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista dos Jogos</a></li>	        
+			      </ul>
+			    </div>
+			  </nav>
+		</header>
+			
+			<h1>Detalhes</h1>
+				<table class="container shadowLista">
+					<thead>
+						<tr>
+							<th>Nome</th>
+							<th>Dispon&iacutevel</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="jogo: ${jogo}">
+						<td th:text="${jogo.nome}">Nome</td>
+						<td th:text="${jogo.disponivel}">Dispon&iacutevel</td>
+				</tr>
+					</tbody>
+				</table>
+			
+				<th:block th:include="mensagemValidacao"></th:block>
+			
+				<form method="post" class="container shadowForm">
+				<h5>Cadastro de Edi&ccedil&otildees</h5>
+				
+					Nome da Edi&ccedil&atildeo: <input type="text" value="" name="nome">
+		
+					<div class="input-field col s6">
+					Plataforma: <select form="cadDetalhes" id="plataforma" name="plataforma"  required >
+								  <option th:value="PC" th:text="PC"></option> 
+								  <option th:value="Console" th:text="Console">Console</option>
+								</select>		
+					</div>
+					
+					<div class="input-field col s6">
+					Console/Software: 	
+					<select form="cadDetalhes" id="console" name="console" required >
+					<div th:if="${plataforma == 'Console'}">
+								  <option th:value="PS4" th:text="PS4"></option> 
+								  <option th:value="XBOX ONE" th:text="XBOX ONE"></option>
+								  </div>
+					<div th:if="${plataforma == 'PC'}">
+								  <option th:value="Steam" th:text="Steam"></option> 
+								  <option th:value="Origin" th:text="Origin"></option>
+								  <option th:value="Uplay" th:text="Uplay"></option>
+								  </div>		
+					</select>				
+					</div>
+								
+					<div class="input-field col s6">			
+					Dispon&iacutevel: <input type="number" min="0" value="" name="disponivel" required>
+					</div>
+						
+								
+					<div class="input-field col s6">			
+					CD-Key: <input type="text" value="" name="cdkey" maxlength="30">
+					</div>
+					
+					<button type="submit" class="waves-effect waves-light btn">Adicionar</button>			
+				</form>
+				<h5 class="center">Edi&ccedil&otildees</h5>
+				  <div class="container" th:each="edicao : ${edicoes}">
+				  	<table class="container shadowLista">
+					<thead>
+						<tr>
+							<th>Nome</th>
+							<th>Plataforma</th>
+							<th>Console/Software</th>
+							<th>CD-Key</th>
+							<th>Dispon&iacutevel</th>
+							<th>Deletar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td th:text="${edicao.nome}">Nome</td>
+							<td th:text="${edicao.plataforma}">Plataforma</td>
+							<td th:text="${edicao.console}">Console/Software</td>
+							<td th:text="${edicao.cdkey}">CD-Key</td>
+							<td th:text="${edicao.disponivel}">Dispon&iacutevel</td>
+							<td><a  class="waves-effect waves-light btn-small" href="${(#mvc.url('JC#deletarEdicao').arg(0, edicao.nome)).build()}"><i class="material-icons">delete</i></a></td>
+						</tr>
+					</tbody>
+				</table>
+			 </div>
+				  
+			
+	  <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+	  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	</body>
+</html>
