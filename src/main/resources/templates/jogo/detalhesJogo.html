@@ -13,22 +13,23 @@
 		  <link rel="stylesheet" href="style/styleCss.css"/>
 	</head>
 		
-		<body>
+		<body class="body">
+			<main class="main">
 		
 			<header>
-			<nav>
+			<nav class="nav">
 		    <div class="nav-wrapper">
-		      <a href="#!" class="brand-logo center">Lightning Games</a>
+		      <a href="#" class="brand-logo center">Lightning Games</a>
 		      	<ul class="left hide-on-med-and-down">
-		      		<li class="active"><a href="/">Home</a></li>
-			        <li class="active"><a href="/cadastrarJogo" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Jogo</a></li>
-			        <li class="active"><a href="/jogos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista dos Jogos</a></li>	        
+		      		<li class="active"><a href="/"><i class="material-icons left">home</i>Home</a></li>
+			        <li class="active"><a href="/cadastrarJogo"><i class="material-icons left">add_circle_outline</i>Cadastrar Jogo</a></li>
+			        <li class="active"><a href="/jogos"><i class="material-icons left">format_list_bulleted</i>Lista dos Jogos</a></li>	        
 			      </ul>
 			    </div>
 			  </nav>
 		</header>
 			
-			<h1>Detalhes</h1>
+			<h1 class="center">Detalhes <i class="medium material-icons">description</i></h1>
 				<table class="container shadowLista">
 					<thead>
 						<tr>
@@ -44,35 +45,32 @@
 					</tbody>
 				</table>
 			
-				<th:block th:include="mensagemValidacao"></th:block>
-			
 				<form method="post" class="container shadowForm">
 				<h5>Cadastro de Edi&ccedil&otildees</h5>
 				
 					Nome da Edi&ccedil&atildeo: <input type="text" value="" name="nome" required>
-		
-					<div class="input-field col s6">
-					Plataforma: <select form="cadDetalhes" id="plataforma" name="plataforma"  required >
-								  <option th:value="PC" th:text="PC"></option> 
-								  <option th:value="Console" th:text="Console">Console</option>
+				
+				<div class="row">
+					<div class="input-field col s2" style="width : 20%">
+					Plataforma: <select form="cadDetalhes" id="plataforma" name="plataforma" style="display: block;" required >
+								  <option value="PC">PC</option> 
+								  <option value="Console">Console</option>
 								</select>		
 					</div>
-					
-					<div class="input-field col s6">
+				
+					<div class="input-field col s6" style="width : 20%">
 					Console/Software: 	
-					<select form="cadDetalhes" id="console" name="console" required >
-					<div th:if="${plataforma == 'Console'}">
-								  <option th:value="PS4" th:text="PS4"></option> 
-								  <option th:value="XBOX ONE" th:text="XBOX ONE"></option>
-								  </div>
-					<div th:if="${plataforma == 'PC'}">
-								  <option th:value="Steam" th:text="Steam"></option> 
-								  <option th:value="Origin" th:text="Origin"></option>
-								  <option th:value="Uplay" th:text="Uplay"></option>
-								  </div>		
-					</select>				
+							<select form="cadDetalhes" id="console" name="console"  style="display: block;" required >
+								  <option value="PS4" ></option> 
+								  <option value="XBOX ONE"></option>
+								  
+								  <option value="Steam"></option> 
+								  <option value="Origin"></option>
+								  <option value="Uplay"></option>				  
+							</select>				
+						</div>
 					</div>
-								
+				
 					<div class="input-field col s6">			
 					Dispon&iacutevel: <input type="number" min="0" value=""  maxlength="3" name="disponivel" required>
 					</div>
@@ -84,7 +82,9 @@
 					
 					<button type="submit" class="waves-effect waves-light btn">Adicionar</button>			
 				</form>
-				<h5 class="center">Edi&ccedil&otildees</h5>
+				
+				<th:block th:include="mensagemValidacao"></th:block>
+				<h5 class="center">Edi&ccedil&otildees <i class="material-icons">view_list</i></h5>
 				  	<table class="container shadowLista">
 				  	<div class="container" th:each="edicao : ${edicoes}">
 					<thead>
@@ -109,27 +109,30 @@
 					</tbody>
 				</div>
 			</table>
-			 
-			  <footer class="page-footer">
-          <div class="container ">
-            <div class="row">
-              <div class="col l6 s6">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-              </div>
-              <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
-                <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="footer-copyright">
-            <div class="container">
-            © 2014 Copyright Text
-            </div>
-          </div>
+			
+			</main> 
+			
+		 <footer class="page-footer">
+	          <div class="container ">
+	            <div class="row">
+	              <div class="col l6 s6">
+	                <h5 class="white-text">Lightning Games</h5>
+	                <p class="grey-text text-lighten-4">Sistema de estoque de jogos da Lightning Games.</p>
+	              </div>
+	              <div class="col l4 offset-l2 s12">
+	                <h5 class="white-text">Links</h5>
+	                <ul>
+	                  <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/lightninggamesvl/">Instagram</a></li>
+	                  <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/LightningGamesVL">Facebook</a></li>
+	                </ul>
+	              </div>
+	            </div>
+	          </div>
+	          <div class="footer-copyright">
+	            <div class="container">
+	         Lightning Games © 2020 Todos os direitos reservados.
+	            </div>
+	          </div>
         </footer>
 			 		
 	  <script type="text/javascript" src="materialize/js/materialize.min.js"></script>

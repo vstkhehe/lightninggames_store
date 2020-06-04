@@ -65,11 +65,15 @@ public class JogoController {
 	}
 	
 	@RequestMapping("/deletarJogo")
-	public String deletarJogo(String id) {
+	public String deletarJogo(String id, RedirectAttributes attributes) {
 		Optional<Jogo> optionalJogo = jogoRepository.findById(id);
 		if(optionalJogo.isPresent()) {
 			Jogo jogo = optionalJogo.get();
+			if(jogo.getEdicao() != null){
+				attributes.addFlashAttribute("mensagem", "Jogo possui edições cadastradas !");
+			}else {
 			jogoRepository.delete(jogo);
+			}
 		}
 		return "redirect:/jogos";
 	}
@@ -85,7 +89,7 @@ public class JogoController {
 				Jogo jogo = optionalJogo.get();
 				edicao.setJogo(jogo);
 				edicaoRepository.save(edicao);
-				attributes.addFlashAttribute("mensagem", "Edição adicionado com sucesso");
+				attributes.addFlashAttribute("mensagem", "Edição adicionada com sucesso");
 			}
 		return "redirect:/{id}";
 	}

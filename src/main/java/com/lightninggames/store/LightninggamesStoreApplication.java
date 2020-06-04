@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan({"com.lightninggames.store.controller"})
+@ComponentScan(basePackages = {"com.lightninggames.store.security"})
 @EntityScan(basePackages = {"com.lightninggames.store.model"})
 public class LightninggamesStoreApplication {
 
