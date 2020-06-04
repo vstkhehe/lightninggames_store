@@ -97,7 +97,7 @@ public class JogoController {
 			Edicao edicao = optionalEdicao.get();
 			edicaoRepository.delete(edicao);
 		}
-		return "redirect:/{jogo.id}";
+		return "redirect:/jogos";
 		
 	}
 	
