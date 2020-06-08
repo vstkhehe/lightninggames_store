@@ -1,13 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt"
 			xmlns="http://www.w3.org/1999/xhtml"
-			xmlns:th="http://thymeleaf.org">
+			xmlns:th="http://thymeleaf.org"
+			xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
-	
+		
+	      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+	      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+		  <link rel="stylesheet" href="style/styleCss.css"/>
+	      
+	      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		
+		  <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+	  	  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		  
 	</head>
+	
 		<body>
-			<div class="alert alert-success alert-missible" role="alert" th:if="${not #strings.isEmpty(mensagem)}">
-				<span th:text="${mensagem}"></span>
-			</div>
+			<div class="row center" style="padding-left: 750px" id="alert_box" th:if="${not #strings.isEmpty(mensagem)}">
+			 <div class="col s10 m4">
+			  <div class="card grey darken-4">
+			      <div class="card-content white-text">
+			        <div role="" th:if="${not #strings.isEmpty(mensagem)}">
+							<span th:text="${mensagem}"></span>
+							<i class="material-icons right" id="alert_close" aria-hidden="true">cancel</i>
+					</div>
+			    </div>
+			  		</div>
+			  	</div>
+			  </div>
+
+
+<script>
+$('#alert_close').click(function(){
+$( "#alert_box" ).fadeOut( "fast", function() {
+});
+});
+</script>			
+			
 		</body>			
 </html>

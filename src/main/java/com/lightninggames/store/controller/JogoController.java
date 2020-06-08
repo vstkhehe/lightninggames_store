@@ -69,7 +69,7 @@ public class JogoController {
 		Optional<Jogo> optionalJogo = jogoRepository.findById(id);
 		if(optionalJogo.isPresent()) {
 			Jogo jogo = optionalJogo.get();
-			if(jogo.getEdicao() != null){
+			if(!jogo.getEdicao().isEmpty()){
 				attributes.addFlashAttribute("mensagem", "Jogo possui edições cadastradas !");
 			}else {
 			jogoRepository.delete(jogo);

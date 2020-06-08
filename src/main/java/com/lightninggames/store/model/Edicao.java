@@ -25,7 +25,7 @@ public class Edicao implements Serializable{
 	
 	@NotEmpty
 	private String nome;
-	@NotEmpty
+	
 	private String disponivel;
 	private String cdkey;
 	private String plataforma;

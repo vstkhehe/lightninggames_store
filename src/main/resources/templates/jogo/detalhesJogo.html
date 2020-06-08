@@ -7,10 +7,14 @@
 		
 	      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 	      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-	
+		  <link rel="stylesheet" href="style/styleCss.css"/>
+	      
 	      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		
-		  <link rel="stylesheet" href="style/styleCss.css"/>
+		  <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+	  	  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		  
 	</head>
 		
 			<header>
@@ -56,27 +60,61 @@
 				
 				<div class="row">
 					<div class="input-field col s2" style="width : 20%">
-					Plataforma: <select form="cadDetalhes" id="plataforma" name="plataforma" style="display: block;" required >
-								  <option value="PC">PC</option> 
+					Plataforma: <select class="plataforma" id="plataforma" name="plataforma" style="display: block;">
+								  <option value="" disabled selected>Selecione</option>
+								  <option value="PC" defaultSelected>PC</option> 
 								  <option value="Console">Console</option>
 								</select>		
 					</div>
 				
 					<div class="input-field col s6" style="width : 20%">
 					Console/Software: 	
-							<select form="cadDetalhes" id="console" name="console"  style="display: block;" required >
-								  <option value="PS4" ></option> 
-								  <option value="XBOX ONE"></option>
+							<select id="console" name="console"  style="display: block;"required disabled >
+								  <option value="" disabled selected>Selecione</option>
 								  
-								  <option value="Steam"></option> 
-								  <option value="Origin"></option>
-								  <option value="Uplay"></option>				  
+								  <option class="console" value="PS4">PS4</option> 
+								  <option class="console" value="XBOX ONE">XBOX ONE</option>
+								  
+								  <option class="pc" value="Steam">Steam</option> 
+								  <option class="pc" value="Origin">Origin</option>
+								  <option class="pc" value="Uplay">Uplay</option>		  
 							</select>				
 						</div>
+						
+								  <script>
+			$(document).ready(function(){
+				$("select.plataforma").change(function(){
+			        var selectedPlataforma = $(this).children("option:selected").val();
+
+			        	if(selectedPlataforma != null){
+			        		$('select').prop('disabled', false);
+			        	}
+			     
+			        	if(selectedPlataforma == 'PC')
+			        		{ 
+			        			$('.console').hide();
+			        			$('.pc').show();
+			        			$('.disponivel').val('1').prop('disabled', true);
+			        			
+			        			
+				        	}
+			        	
+			        	if(selectedPlataforma == 'Console'){
+				        		$('.console').show();
+				        		$('.pc').hide();
+				        	}		        
+			        	}) 
+			        	   	
+					});
+			
+			
+			</script>
+						
+						
 					</div>
 				
 					<div class="input-field col s6">			
-					Dispon&iacutevel: <input type="number" min="0" value=""  maxlength="3" name="disponivel" required>
+					Dispon&iacutevel: <input class="disponivel" type="number" min="0" value=""  maxlength="3" name="disponivel" required>
 					</div>
 						
 								
@@ -139,7 +177,5 @@
 	          </div>
         </footer>
 			 		
-	  <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
-	  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	</body>
 </html>
