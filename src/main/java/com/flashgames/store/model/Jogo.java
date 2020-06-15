@@ -1,4 +1,4 @@
-package com.lightninggames.store.model;
+package com.flashgames.store.model;
 
 import java.io.Serializable;
 import java.util.List;

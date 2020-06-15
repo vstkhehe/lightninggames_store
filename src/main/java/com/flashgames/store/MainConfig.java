@@ -1,4 +1,4 @@
-package com.lightninggames.store;
+package com.flashgames.store;
 
 import java.net.URI;
 import java.net.URISyntaxException;

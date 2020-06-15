@@ -1,4 +1,4 @@
-package com.lightninggames.store.controller;
+package com.flashgames.store.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

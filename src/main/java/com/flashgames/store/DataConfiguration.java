@@ -1,4 +1,4 @@
-package com.lightninggames.store;
+package com.flashgames.store;
 
 import javax.sql.DataSource;
 

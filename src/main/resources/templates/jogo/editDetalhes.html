@@ -7,7 +7,7 @@
 		
 	      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 	      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-		  <link rel="stylesheet" href="style/styleCss.css"/>
+		  <link rel="stylesheet" href="style/style.css" type="text/css"/>
 	      
 	      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		
@@ -16,44 +16,28 @@
 		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		  
 	</head>
-		
-			<header>
+				
+		<header>
 			<nav class="nav">
 		    <div class="nav-wrapper">
 		      <a href="#" class="brand-logo center">Lightning Games</a>
 		      	<ul class="left hide-on-med-and-down">
 		      		<li class="active"><a href="/"><i class="material-icons left">home</i>Home</a></li>
-			        <li class="active"><a href="/cadastrarJogo"><i class="material-icons left">add_circle_outline</i>Cadastrar Jogo</a></li>
-			        <li class="active"><a href="/jogos"><i class="material-icons left">format_list_bulleted</i>Lista dos Jogos</a></li>	        
+			        <li class="active"><a href="/cadastrarJogo" ><i class="material-icons left">add_circle_outline</i>Cadastrar Jogo</a></li>
+			        <li class="active"><a href="/jogos"><i class="material-icons left">format_list_bulleted</i>Lista dos Jogos</a></li>
 			      	<form class="form-inline" form-method="post" th:action="@{/logout}">
 			      	<button type="submit" class="waves-effect waves-light btn ">Logout</button>
 			      	</form>
 			      </ul>
 			    </div>
 			  </nav>
-		</header>
-			
-			
+		</header>		
+		
 		<body class="body">
 			<main class="main">
-			
-			<h1 class="center">Detalhes <i class="medium material-icons">description</i></h1>
-				<table class="container shadowLista">
-					<thead>
-						<tr>
-							<th>Nome</th>
-							<th>Dispon&iacutevel</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="jogo: ${jogo}">
-						<td th:text="${jogo.nome}">Nome</td>
-						<td th:text="${quantidade}">Dispon&iacutevel</td>
-				</tr>
-					</tbody>
-				</table>
-			
-				<form method="post" class="container shadowForm">
+
+
+			<form method="get" class="container shadowForm" th:action="@{/edit/{id}}">
 				<h5>Cadastro de Edi&ccedil&otildees</h5>
 				
 					Nome da Edi&ccedil&atildeo: <input type="text" value="" name="nome" required>
@@ -126,39 +110,9 @@
 					
 					<button type="submit" class="waves-effect waves-light btn">Salvar</button>			
 				</form>
+			</main>	
 				
-				<th:block th:include="mensagemValidacao"></th:block>
-				<h5 class="center">Edi&ccedil&otildees <i class="material-icons">view_list</i></h5>
-				  	<table class="container shadowLista">
-				  	<div class="container" th:each="edicao : ${edicoes}">
-					<thead>
-						<tr>
-							<th>Nome</th>
-							<th>Plataforma</th>
-							<th>Console/Software</th>
-							<th>CD-Key</th>
-							<th>Dispon&iacutevel</th>
-							<th>Editar</th>
-							<th>Deletar</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td th:text="${edicao.nome}">Nome</td>
-							<td th:text="${edicao.plataforma}">Plataforma</td>
-							<td th:text="${edicao.console}">Console/Software</td>
-							<td th:text="${edicao.cdkey}">CD-Key</td>
-							<td th:text="${edicao.disponivel}">Dispon&iacutevel</td>
-							<td><a  class="waves-effect waves-light btn-small" th:href="${(#mvc.url('JC#showUpdateForm').arg(0, edicao.id)).build()}"><i class="material-icons">edit</i></a></td>
-							<td><a  class="waves-effect waves-light btn-small" th:href="${(#mvc.url('JC#deletarEdicao').arg(0, edicao.id)).build()}"><i class="material-icons">delete</i></a></td>
-						</tr>
-					</tbody>
-				</div>
-			</table>
-			
-			</main> 
-			
-		 <footer class="page-footer">
+		<footer class="page-footer">
 	          <div class="container ">
 	            <div class="row">
 	              <div class="col l6 s6">
@@ -176,10 +130,10 @@
 	          </div>
 	          <div class="footer-copyright">
 	            <div class="container">
-	         Lightning Games © 2020 Todos os direitos reservados.
+	         		Lightning Games © 2020 Todos os direitos reservados.
 	            </div>
 	          </div>
-        </footer>
-			 		
+        </footer>	
+ 
 	</body>
 </html>
