@@ -39,7 +39,7 @@
 .page-footer {
   text-align: center;
   padding: 3px;
-  background-color: DarkGrey;
+  background-color: Orange;
   color: white;
 }
 
@@ -53,9 +53,17 @@
   	color: white;
 }
 
+.btn:hover {
+  background-color: orange !important;
+}
+
 .btn-small{
 	background-color: Black;
   	color: white;
+}
+
+.btn-small:hover{
+	background-color: orange !important;
 }
 
 .icon_style{
@@ -65,4 +73,23 @@ top: 10px;
 font-size: 20px;
 color: white;
 cursor:pointer; 
+}
+
+/* label focus color */
+ label {
+    color: black !important;
+}
+
+ label:focus {
+    color: orange !important;
+}
+
+/* label underline focus color */
+ input:focus {
+   border-bottom: 1px solid orange !important;
+   box-shadow: 0 1px 0 0 orange !important
+ }
+ 
+ label.active {
+  color: orange !important;
 }

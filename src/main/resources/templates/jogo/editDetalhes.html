@@ -3,60 +3,69 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 	<head>
-		<title> Lightning Games</title>
+		<title> Flash Games</title>
 		
 	      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-	      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-		  <link rel="stylesheet" href="style/style.css" type="text/css"/>
+	      <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
+		  <link type="text/css" rel="stylesheet" href="/style/styleCss.css"/>
 	      
 	      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		
-		  <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+		  <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
 	  	  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		  
 	</head>
 				
 		<header>
-			<nav class="nav">
-		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo center">Lightning Games</a>
-		      	<ul class="left hide-on-med-and-down">
-		      		<li class="active"><a href="/"><i class="material-icons left">home</i>Home</a></li>
-			        <li class="active"><a href="/cadastrarJogo" ><i class="material-icons left">add_circle_outline</i>Cadastrar Jogo</a></li>
-			        <li class="active"><a href="/jogos"><i class="material-icons left">format_list_bulleted</i>Lista dos Jogos</a></li>
-			      	<form class="form-inline" form-method="post" th:action="@{/logout}">
-			      	<button type="submit" class="waves-effect waves-light btn ">Logout</button>
-			      	</form>
-			      </ul>
-			    </div>
-			  </nav>
+			<th:block th:include="nav"></th:block>
 		</header>		
 		
 		<body class="body">
 			<main class="main">
 
+			<h1 class="center">Detalhes <i class="medium material-icons">description</i></h1>
+				<table class="container shadowLista" th:object="${jogo}">
+					<thead>
+						<tr>
+							<th>Nome</th>
+							<th>Dispon&iacutevel</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="jogo: ${jogo}">
+						<td th:text="${jogo.nome}">Nome</td>
+						<td th:text="${jogo.disponivel}">Dispon&iacutevel</td>
+				</tr>
+					</tbody>
+				</table>
 
-			<form method="get" class="container shadowForm" th:action="@{/edit/{id}}">
-				<h5>Cadastro de Edi&ccedil&otildees</h5>
+			<form method="post" class="container shadowForm" th:action="@{/update/{id}}"  th:object="${edicao}">
+			<th:block th:include="mensagemValidacao"></th:block>
+				<h5>Edi&ccedil&atildeo de Edi&ccedil&otildees</h5>
 				
-					Nome da Edi&ccedil&atildeo: <input type="text" value="" name="nome" required>
+				<div class="input-field">
+					<input type="text" value="" name="nome" th:field="*{nome}" required>
+					<label class="active" for="nome_edicao">Nome da Edi&ccedil&atildeo</label>
+				</div>
+				
 				
 				<div class="row">
 				  
 				  <input type="hidden" th:field="*{id}" id="id"/>
 					
 					<div class="input-field col s2" style="width : 20%">
-					Plataforma: <select class="plataforma" id="plataforma" name="plataforma" style="display: block;">
+					
+					<select class="plataforma" id="plataforma" name="plataforma"  th:field="*{plataforma}" style="display: block;">
 								  <option value="" disabled selected>Selecione</option>
 								  <option value="PC" defaultSelected>PC</option> 
 								  <option value="Console">Console</option>
-								</select>		
+								</select>	
+						<label class="active" for="plataforma">Plataforma</label>	
 					</div>
 				
 					<div class="input-field col s6" style="width : 20%">
-					Console/Software: 	
-							<select id="console" name="console"  style="display: block;"required disabled >
+							<select id="console" name="console" th:field="*{console}" style="display: block;"required  >
 								  <option value="" disabled selected>Selecione</option>
 								  
 								  <option class="console" value="PS4">PS4</option> 
@@ -65,8 +74,9 @@
 								  <option class="pc" value="Steam">Steam</option> 
 								  <option class="pc" value="Origin">Origin</option>
 								  <option class="pc" value="Uplay">Uplay</option>		  
-							</select>				
-						</div>
+							</select>
+							<label class="active" for="console">Console/Software</label>				
+					</div>
 						
 							<script>
 							$(document).ready(function(){
@@ -100,40 +110,21 @@
 					</div>
 				
 					<div class="input-field col s6">			
-					Dispon&iacutevel: <input id="disponivel" type="number" min="0" value=""  maxlength="3" name="disponivel" required>
+						<input id="disponivel" type="number" min="0" value="" th:field="*{disponivel}" maxlength="3" name="disponivel" required>
+						<label class="active" for="disponivel">Dispon&iacutevel</label>
 					</div>
 						
 								
 					<div class="input-field col s6">			
-					CD-Key: <input id="cdkey" type="text" value="" name="cdkey" maxlength="30">
+						<input id="cdkey" type="text" value="" th:field="*{cdkey}" name="cdkey" maxlength="30">
+						<label class="active" for="cdkey">CD-Key</label>
 					</div>
 					
-					<button type="submit" class="waves-effect waves-light btn">Salvar</button>			
+					<button type="submit" class="waves-effect waves-light btn" th:action="@{/updateEdicao/{id}}">Salvar</button>			
 				</form>
 			</main>	
 				
-		<footer class="page-footer">
-	          <div class="container ">
-	            <div class="row">
-	              <div class="col l6 s6">
-	                <h5 class="white-text">Lightning Games</h5>
-	                <p class="grey-text text-lighten-4">Sistema de estoque de jogos da Lightning Games.</p>
-	              </div>
-	              <div class="col l4 offset-l2 s12">
-	                <h5 class="white-text">Links</h5>
-	                <ul>
-	                  <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/lightninggamesvl/">Instagram</a></li>
-	                  <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/LightningGamesVL">Facebook</a></li>
-	                </ul>
-	              </div>
-	            </div>
-	          </div>
-	          <div class="footer-copyright">
-	            <div class="container">
-	         		Lightning Games © 2020 Todos os direitos reservados.
-	            </div>
-	          </div>
-        </footer>	
+		<th:block th:include="footer"></th:block>	
  
 	</body>
 </html>

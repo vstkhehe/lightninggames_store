@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.flashgames.store.model.Edicao;
 import com.flashgames.store.model.Jogo;
 import com.flashgames.store.repository.JogoRepository;
 
@@ -22,6 +23,14 @@ public class JogoService{
 	public Jogo findByNome(String nome) {
 		return repository.findByNome(nome);
 	}
+	
+	public Jogo findByEdicao(Edicao edicao) {
+		return repository.findByEdicao(edicao);
+	}
+	
+	public Jogo findByEdicao(Optional<Edicao> edicao) {
+		return repository.findByEdicao(edicao);
+	}
 
 	public Iterable<Jogo> findAll() {
 		return repository.findAll();
@@ -34,4 +43,5 @@ public class JogoService{
 	public Jogo save(Jogo jogo) {
 		return repository.save(jogo);
 	}
+
 }

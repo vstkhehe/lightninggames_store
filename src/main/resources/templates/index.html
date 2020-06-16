@@ -3,7 +3,7 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 	<head>
-		<title> Lightning Games</title>
+		<title> Flash Games</title>
 		
 	      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 	      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
@@ -18,19 +18,7 @@
 	</head>
 	
 		<header>
-			<nav class="nav">
-		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo center"><i class="material-icons">cloud_queue</i>Lightning Games</a>
-		      	<ul class="left hide-on-med-and-down">
-		      		<li class="active"><a href="/"><i class="material-icons left">home</i>Home</a></li>
-			        <li class="active"><a href="/cadastrarJogo"><i class="material-icons left">add_circle_outline</i>Cadastrar Jogo</a></li>
-			        <li class="active"><a href="/jogos"><i class="material-icons left">format_list_bulleted</i>Lista dos Jogos</a></li>
-			      	<form class="form-inline" form-method="post" th:action="@{/logout}">
-			      	<button type="submit" class="waves-effect waves-light btn ">Logout</button>
-			      	</form>
-			      </ul>
-			    </div>
-			  </nav>
+			<th:block th:include="nav"></th:block>
 		</header>
 		
 		<body class="body">
@@ -38,33 +26,12 @@
 				<h1 class="center"> Bem vindo !</h1>
 				
 				
-	
+			<img src="/images/logo.jpeg" alt="logo" style="padding-left:700px">
 	
 						
 			</main>	
 			
-		 <footer class="page-footer">
-	          <div class="container ">
-	            <div class="row">
-	              <div class="col l6 s6">
-	                <h5 class="white-text">Lightning Games</h5>
-	                <p class="grey-text text-lighten-4">Sistema de estoque de jogos da Lightning Games.</p>
-	              </div>
-	              <div class="col l4 offset-l2 s12">
-	                <h5 class="white-text">Links</h5>
-	                <ul>
-	                  <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/lightninggamesvl/">Instagram</a></li>
-	                  <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/LightningGamesVL">Facebook</a></li>
-	                </ul>
-	              </div>
-	            </div>
-	          </div>
-	          <div class="footer-copyright">
-	            <div class="container">
-	         Lightning Games © 2020 Todos os direitos reservados.
-	            </div>
-	          </div>
-        </footer>	
+		<th:block th:include="footer"></th:block>
 	  
 	</body>
 	

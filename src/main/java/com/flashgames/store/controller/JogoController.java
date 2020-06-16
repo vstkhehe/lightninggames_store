@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -122,24 +123,31 @@ public class JogoController {
 	}
 	
 	@GetMapping("/edit/{id}")
-	public String showUpdateForm(@PathVariable("id") String id, RedirectAttributes attributes, 
+	public String showUpdateForm(@PathVariable("id") String id,RedirectAttributes attributes, 
 			Optional<Edicao> edicao, BindingResult result, Model model) {	
 		if (edicao.isPresent()) {
+			Jogo jogo = jogoService.findByEdicao(edicao);
             edicao = edicaoService.findById(id);
             model.addAttribute("edicao", edicao);
+            model.addAttribute("jogo", jogo);
 		}
 		return "jogo/editDetalhes";	
 	}
 	
 	@PostMapping("/update/{id}")
-	public String updateEdicao(@PathVariable("id") String id, RedirectAttributes attributes, 
-			Edicao edicao, BindingResult result, Model model) {
-	    if (result.hasErrors()) {
-	        edicao.setId(id);
+	public String updateEdicao(@ModelAttribute("edicao") Edicao edicao, 
+			RedirectAttributes attributes, BindingResult result, Model model) {
+	   
+		if (result.hasErrors()) {
 	        return "jogo/editDetalhes";
+	    
+		}else{
+			Jogo jogo = jogoService.findByEdicao(edicao);
+			edicao.setJogo(jogo);
+	        edicaoService.save(edicao);
+	        attributes.addFlashAttribute("mensagem", "Edição feita com sucesso");
 	    }
-	    edicaoService.save(edicao);
-	    model.addAttribute("edicao", edicaoService.findById(id));
+		
 	    return "redirect:/{id}";
 	}
 

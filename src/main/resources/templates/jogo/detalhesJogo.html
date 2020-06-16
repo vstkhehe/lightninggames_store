@@ -3,7 +3,7 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 	<head>
-		<title> Lightning Games</title>
+		<title> Flash Games</title>
 		
 	      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 	      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
@@ -17,20 +17,8 @@
 		  
 	</head>
 		
-			<header>
-			<nav class="nav">
-		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo center">Lightning Games</a>
-		      	<ul class="left hide-on-med-and-down">
-		      		<li class="active"><a href="/"><i class="material-icons left">home</i>Home</a></li>
-			        <li class="active"><a href="/cadastrarJogo"><i class="material-icons left">add_circle_outline</i>Cadastrar Jogo</a></li>
-			        <li class="active"><a href="/jogos"><i class="material-icons left">format_list_bulleted</i>Lista dos Jogos</a></li>	        
-			      	<form class="form-inline" form-method="post" th:action="@{/logout}">
-			      	<button type="submit" class="waves-effect waves-light btn ">Logout</button>
-			      	</form>
-			      </ul>
-			    </div>
-			  </nav>
+		<header>
+			<th:block th:include="nav"></th:block>
 		</header>
 			
 			
@@ -56,32 +44,36 @@
 				<form method="post" class="container shadowForm">
 				<h5>Cadastro de Edi&ccedil&otildees</h5>
 				
-					Nome da Edi&ccedil&atildeo: <input type="text" value="" name="nome" required>
+				<div class="input-field">
+					<input type="text" value="" name="nome" required>
+					<label class="active" for="nome_edicao">Nome da Edi&ccedil&atildeo</label>
+				</div>
 				
 				<div class="row">
 				  
-				  <input type="hidden" th:field="*{id}" id="id"/>
+				  <input type="hidden" id="id"/>
 					
-					<div class="input-field col s2" style="width : 20%">
-					Plataforma: <select class="plataforma" id="plataforma" name="plataforma" style="display: block;">
+					<div class="input-field col s12 m6" style="width : 20%">
+						<select class="plataforma" id="plataforma" name="plataforma" style="display: block;">
 								  <option value="" disabled selected>Selecione</option>
 								  <option value="PC" defaultSelected>PC</option> 
 								  <option value="Console">Console</option>
-								</select>		
+								</select>
+						<label class="active" for="plataforma">Plataforma</label>		
 					</div>
 				
-					<div class="input-field col s6" style="width : 20%">
-					Console/Software: 	
-							<select id="console" name="console"  style="display: block;"required disabled >
-								  <option value="" disabled selected>Selecione</option>
-								  
-								  <option class="console" value="PS4">PS4</option> 
-								  <option class="console" value="XBOX ONE">XBOX ONE</option>
-								  
-								  <option class="pc" value="Steam">Steam</option> 
-								  <option class="pc" value="Origin">Origin</option>
-								  <option class="pc" value="Uplay">Uplay</option>		  
-							</select>				
+					<div class="input-field col s12 m6" style="width : 20%">
+								<select id="console" name="console"  style="display: block;"required disabled >
+									  <option value="" disabled selected>Selecione</option>
+									  
+									  <option class="console" value="PS4">PS4</option> 
+									  <option class="console" value="XBOX ONE">XBOX ONE</option>
+									  
+									  <option class="pc" value="Steam">Steam</option> 
+									  <option class="pc" value="Origin">Origin</option>
+									  <option class="pc" value="Uplay">Uplay</option>		  
+								</select>				
+							<label class="active" for="console">Console/Software</label>
 						</div>
 						
 							<script>
@@ -112,16 +104,23 @@
 							        	   	
 									});
 							</script>
+							<script>
+							$(document).ready(function(){
+							    $('select').formSelect();
+							    
+							</script>
 						
 					</div>
 				
 					<div class="input-field col s6">			
-					Dispon&iacutevel: <input id="disponivel" type="number" min="0" value=""  maxlength="3" name="disponivel" required>
+						<input id="disponivel" type="number" min="0" value=""  maxlength="3" name="disponivel" required>
+						<label class="active" for="disponivel">Dispon&iacutevel</label>
 					</div>
 						
 								
 					<div class="input-field col s6">			
-					CD-Key: <input id="cdkey" type="text" value="" name="cdkey" maxlength="30">
+						<input id="cdkey" type="text" value="" name="cdkey" maxlength="30">
+						<label class="active" for="cdkey">CD-Key</label>
 					</div>
 					
 					<button type="submit" class="waves-effect waves-light btn">Salvar</button>			
@@ -158,28 +157,7 @@
 			
 			</main> 
 			
-		 <footer class="page-footer">
-	          <div class="container ">
-	            <div class="row">
-	              <div class="col l6 s6">
-	                <h5 class="white-text">Lightning Games</h5>
-	                <p class="grey-text text-lighten-4">Sistema de estoque de jogos da Lightning Games.</p>
-	              </div>
-	              <div class="col l4 offset-l2 s12">
-	                <h5 class="white-text">Links</h5>
-	                <ul>
-	                  <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/lightninggamesvl/">Instagram</a></li>
-	                  <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/LightningGamesVL">Facebook</a></li>
-	                </ul>
-	              </div>
-	            </div>
-	          </div>
-	          <div class="footer-copyright">
-	            <div class="container">
-	         Lightning Games © 2020 Todos os direitos reservados.
-	            </div>
-	          </div>
-        </footer>
+		<th:block th:include="footer"></th:block>
 			 		
 	</body>
 </html>
