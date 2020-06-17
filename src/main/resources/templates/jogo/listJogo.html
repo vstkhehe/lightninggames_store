@@ -11,7 +11,13 @@
 	      
 	      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		
+		  <!-- Materialize -->
 		  <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+	  	    	  
+	  	  <!-- Sort table -->
+	  	  <script src="https://www.w3schools.com/lib/w3.js"></script>
+	  	  
+	  	  <!-- JQuery -->
 	  	  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		  
@@ -26,27 +32,24 @@
 		
 			<h1 class="center">Lista de Jogos <i class="medium material-icons">format_list_bulleted</i></h1>
 			
-			<table class="container tabelaLista highlight">
+			<table class="container tabelaLista highlight" id="table">
 			
 			<th:block th:include="mensagemValidacao"></th:block>
 					<thead>
 						<tr>
-							<th>Nome</th>
-						    <th>Quantidade</th>
+							<th onclick="w3.sortHTML('#table', '.item', 'td:nth-child(1)')" style="cursor:pointer">Nome</th>
+						    <th onclick="w3.sortHTML('#table', '.item', 'td:nth-child(2)')" style="cursor:pointer">Quantidade</th>
 						    <th>Deletar</th>
 						</tr>
 					</thead>
 					<tbody>
-					<tr th:each="jogos: ${jogos}">
+						<tr class="item" th:each="jogos: ${jogos}">
 				    		<td><a th:href="${(#mvc.url('JC#detalhesJogo').arg(0, jogos.id)).build()}"><span style="color:orange;font-size:18px;" th:text="${jogos.nome}"></span></a></td>
 							<td><span th:text="${jogos.disponivel}"></span></td>
 							<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('JC#deletarJogo').arg(0, jogos.id)).build()}"><i class="material-icons">delete</i></a></td>
 						</tr>
 					</tbody>
 				</table>
-				
-				
-				
 						
 			</main>
 		
