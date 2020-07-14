@@ -15,5 +15,5 @@ public interface JogoRepository extends CrudRepository<Jogo, String> {
 	Jogo findByEdicao(Edicao edicao);
 	
 	Jogo findByEdicao(Optional<Edicao> edicao);
-	
+
 }

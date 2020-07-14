@@ -36,7 +36,7 @@ public class JogoService{
 		return repository.findAll();
 	}
 
-	public void delete(Jogo jogo) {
+	public void delete(Jogo jogo, String imageName) {
 		repository.deleteById(jogo.getId());
 	}
 

@@ -4,16 +4,17 @@
 
 	<head>
 		<title> Flash Games</title>
-		
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<!-- CSS -->
 	      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 	      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
 		  <link rel="stylesheet" href="style/styleCss.css"/>
-	      
-	      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		
-		  <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+			<!-- JQuery --> 
 	  	  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		  	<!-- Materialize -->
+		  <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+		  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 		  
 	</head>
 	
@@ -23,13 +24,35 @@
 		
 		<body class="body">
 			<main class="main">
-				<h1 class="center"> Bem vindo !</h1>
 				
-				
-			<img src="/images/logo.jpeg" alt="logo" style="padding-left:700px">
-	
-						
-			</main>	
+				<script type="text/javascript">
+				    $(document).ready(function () {
+				        $('.carousel').carousel();
+				        </script>
+
+				<div class="container">
+					
+					    <div class="col s12 m12">
+					      <div class="card-panel orange">
+					      	<div class="col s12 m12">
+					      		<div class="card-panel black white-text">
+					        		<h1 class="center"> Bem vindo </h1>
+					        	</div>
+					      	</div>
+					    </div>
+					  </div>
+					
+				     <div class="carousel carousel-slider center">
+					    <div class="carousel-fixed-item center">
+					      <a class="btn waves-effect white grey-text darken-text-2">button</a>
+					    </div>
+					    <div class="carousel-item red white-text" href="#one!">
+					      <h2>First Panel</h2>
+					      <p class="white-text">This is your first panel</p>
+					    </div>
+					    </div>
+					  </div>
+		</main>	
 			
 		<th:block th:include="footer"></th:block>
 	  

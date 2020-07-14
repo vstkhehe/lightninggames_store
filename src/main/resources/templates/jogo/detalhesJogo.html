@@ -56,14 +56,14 @@
 					<div class="input-field col s12 m6" style="width : 20%">
 						<select class="plataforma" id="plataforma" name="plataforma" style="display: block;">
 								  <option value="" disabled selected>Selecione</option>
-								  <option value="PC" defaultSelected>PC</option> 
+								  <option value="PC">PC</option> 
 								  <option value="Console">Console</option>
 								</select>
 						<label class="active" for="plataforma">Plataforma</label>		
 					</div>
 				
 					<div class="input-field col s12 m6" style="width : 20%">
-								<select id="console" name="console"  style="display: block;"required disabled >
+								<select id="console/software" name="console/software"  style="display: block;"required disabled >
 									  <option value="" disabled selected>Selecione</option>
 									  
 									  <option class="console" value="PS4">PS4</option> 
@@ -75,40 +75,6 @@
 								</select>				
 							<label class="active" for="console">Console/Software</label>
 						</div>
-						
-							<script>
-							$(document).ready(function(){
-								$("select.plataforma").change(function(){
-							        var selectedPlataforma = $(this).children("option:selected").val();
-				
-							        	if(selectedPlataforma != null){
-							        		$('select').prop('disabled', false);
-							        	}
-							     
-							        	if(selectedPlataforma == 'PC')
-							        		{ 
-							        			$('.console').hide();
-							        			$('.pc').show();
-							        			$('#disponivel').val("1").prop('readonly', true);
-							        			$('#cdkey').prop('disabled', false);
-							        			
-								        	}
-							        	
-							        	if(selectedPlataforma == 'Console'){
-								        		$('.console').show();
-								        		$('.pc').hide();
-								        		$('#disponivel').val('').prop('readonly', false);
-								        		$('#cdkey').prop('disabled', true);
-								        	}		        
-							        	}) 
-							        	   	
-									});
-							</script>
-							<script>
-							$(document).ready(function(){
-							    $('select').formSelect();
-							    
-							</script>
 						
 					</div>
 				
@@ -144,17 +110,46 @@
 					<tbody>
 						<tr>
 							<td th:text="${edicao.nome}">Nome</td>
-							<td th:text="${edicao.plataforma}">Plataforma</td>
+							<td id="plat" th:text="${edicao.plataforma}">Plataforma</td>
 							<td th:text="${edicao.console}">Console/Software</td>
 							<td th:text="${edicao.cdkey}">CD-Key</td>
 							<td th:text="${edicao.disponivel}">Dispon&iacutevel</td>
-							<td><a  class="waves-effect waves-light btn-small" th:href="${(#mvc.url('JC#showUpdateForm').arg(0, edicao.id)).build()}"><i class="material-icons">edit</i></a></td>
-							<td><a  class="waves-effect waves-light btn-small" th:href="${(#mvc.url('JC#deletarEdicao').arg(0, edicao.id)).build()}"><i class="material-icons">delete</i></a></td>
+							<td><a  class="waves-effect waves-orange btn-small" th:href="${(#mvc.url('JC#showUpdateForm').arg(0, edicao.id)).build()}"><i class="material-icons">edit</i></a></td>
+							<td><a  class="waves-effect waves-orange btn-small" th:href="${(#mvc.url('JC#deletarEdicao').arg(0, edicao.id)).build()}"><i class="material-icons">delete</i></a></td>
 						</tr>
 					</tbody>
 				</div>
 			</table>
-			
+				
+				<script>
+					$(document).ready(function(){
+						
+						$("select.plataforma").change(function(){
+					        var selectedPlataforma = $(this).children("option:selected").val();
+		
+					        	if(selectedPlataforma != null){
+					        		$('select').prop('disabled', false);
+					        	}
+					     
+					        	if(selectedPlataforma == 'PC')
+					        		{ 
+					        			$('.console').hide();
+					        			$('.pc').show();
+					        			$('#disponivel').val("1").prop('readonly', true);
+					        			$('#cdkey').prop('disabled', false);
+					        			
+						        	}
+					        	
+					        	if(selectedPlataforma == 'Console'){
+						        		$('.console').show();
+						        		$('.pc').hide();
+						        		$('#disponivel').val('').prop('readonly', false);
+						        		$('#cdkey').prop('disabled', true);
+					        		}
+								})
+							});
+				</script>
+				
 			</main> 
 			
 		<th:block th:include="footer"></th:block>

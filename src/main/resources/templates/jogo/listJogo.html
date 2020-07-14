@@ -46,7 +46,7 @@
 						<tr class="item" th:each="jogos: ${jogos}">
 				    		<td><a th:href="${(#mvc.url('JC#detalhesJogo').arg(0, jogos.id)).build()}"><span style="color:orange;font-size:18px;" th:text="${jogos.nome}"></span></a></td>
 							<td><span th:text="${jogos.disponivel}"></span></td>
-							<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('JC#deletarJogo').arg(0, jogos.id)).build()}"><i class="material-icons">delete</i></a></td>
+							<td><a class="waves-effect waves-orange btn-small" th:href="${(#mvc.url('JC#deletarJogo').arg(0, jogos.id)).build()}"><i class="material-icons">delete</i></a></td>
 						</tr>
 					</tbody>
 				</table>
